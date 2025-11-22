@@ -39,8 +39,10 @@ class ServicesSection extends StatelessWidget {
               ),
               const SizedBox(height: 48),
               ConstrainedBox(
-                constraints:
-                    const BoxConstraints(maxWidth: 1200, minHeight: 350),
+                constraints: BoxConstraints(
+                  maxWidth: 1200,
+                  minHeight: isMobile ? 280 : 350,
+                ),
                 child: isMobile
                     ? Column(
                         children: [
@@ -50,14 +52,16 @@ class ServicesSection extends StatelessWidget {
                                 'Durable, eco-friendly, suitable for heavy-duty packaging.',
                             icon: Icons.layers,
                             color: Theme.of(context).primaryColor,
+                            isMobile: true,
                           ),
-                          const SizedBox(height: 24),
+                          const SizedBox(height: 20),
                           _ServiceCard(
                             title: 'Cardboard Packing',
                             description:
                                 'Lightweight, cost-effective, perfect for simple product packaging.',
                             icon: Icons.description,
                             color: Theme.of(context).colorScheme.secondary,
+                            isMobile: true,
                           ),
                         ],
                       )
@@ -72,6 +76,7 @@ class ServicesSection extends StatelessWidget {
                                     'Durable, eco-friendly, suitable for heavy-duty packaging.',
                                 icon: Icons.layers,
                                 color: Theme.of(context).primaryColor,
+                                isMobile: false,
                               ),
                             ),
                             const SizedBox(width: 32),
@@ -82,6 +87,7 @@ class ServicesSection extends StatelessWidget {
                                     'Lightweight, cost-effective, perfect for simple product packaging.',
                                 icon: Icons.description,
                                 color: Theme.of(context).colorScheme.secondary,
+                                isMobile: false,
                               ),
                             ),
                           ],
@@ -101,12 +107,14 @@ class _ServiceCard extends StatefulWidget {
   final String description;
   final IconData icon;
   final Color color;
+  final bool isMobile;
 
   const _ServiceCard({
     required this.title,
     required this.description,
     required this.icon,
     required this.color,
+    required this.isMobile,
   });
 
   @override
@@ -132,8 +140,8 @@ class _ServiceCardState extends State<_ServiceCard> {
             borderRadius: BorderRadius.circular(16),
           ),
           child: Container(
-            height: double.infinity,
-            padding: const EdgeInsets.all(40),
+            height: widget.isMobile ? null : double.infinity,
+            padding: EdgeInsets.all(widget.isMobile ? 28 : 40),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               gradient: _isHovered
@@ -148,12 +156,12 @@ class _ServiceCardState extends State<_ServiceCard> {
                   : null,
             ),
             child: Column(
-              mainAxisSize: MainAxisSize.max,
+              mainAxisSize: widget.isMobile ? MainAxisSize.min : MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
-                  padding: const EdgeInsets.all(20),
+                  padding: EdgeInsets.all(widget.isMobile ? 16 : 20),
                   decoration: BoxDecoration(
                     color: _isHovered
                         ? widget.color
@@ -162,25 +170,25 @@ class _ServiceCardState extends State<_ServiceCard> {
                   ),
                   child: Icon(
                     widget.icon,
-                    size: 48,
+                    size: widget.isMobile ? 40 : 48,
                     color: _isHovered ? Colors.white : widget.color,
                   ),
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: widget.isMobile ? 18 : 24),
                 Text(
                   widget.title,
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: widget.isMobile ? 20 : 24,
                     fontWeight: FontWeight.bold,
                     color: widget.color,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: widget.isMobile ? 12 : 16),
                 Text(
                   widget.description,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: widget.isMobile ? 14 : 16,
                     color: Colors.grey[700],
                     height: 1.6,
                   ),

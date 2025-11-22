@@ -169,13 +169,15 @@ class _ContactSectionState extends State<ContactSection> {
   }
 
   Widget _buildContactForm() {
+    final isMobile = MediaQuery.of(context).size.width < 768;
+
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: EdgeInsets.all(isMobile ? 24 : 32),
         child: Form(
           key: _formKey,
           child: Column(
@@ -187,6 +189,10 @@ class _ContactSectionState extends State<ContactSection> {
                   labelText: 'Full Name',
                   hintText: 'Enter your full name',
                   prefixIcon: const Icon(Icons.person),
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: isMobile ? 16 : 12,
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -205,6 +211,10 @@ class _ContactSectionState extends State<ContactSection> {
                   labelText: 'Email',
                   hintText: 'Enter your email',
                   prefixIcon: const Icon(Icons.email),
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: isMobile ? 16 : 12,
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -227,6 +237,10 @@ class _ContactSectionState extends State<ContactSection> {
                   labelText: 'Message',
                   hintText: 'Enter your message',
                   prefixIcon: const Icon(Icons.message),
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: isMobile ? 16 : 12,
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),

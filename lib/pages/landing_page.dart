@@ -58,6 +58,8 @@ class _LandingPageState extends State<LandingPage> {
   }
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 768;
+
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 2,
@@ -74,20 +76,59 @@ class _LandingPageState extends State<LandingPage> {
             style: TextStyle(
               color: Theme.of(context).primaryColor,
               fontWeight: FontWeight.bold,
-              fontSize: 24,
+              fontSize: isMobile ? 18 : 24,
             ),
           ),
         ],
       ),
-      actions: [
-        _buildNavButton(context, 'Home', () => _scrollToSection(_heroKey)),
-        _buildNavButton(
-            context, 'Services', () => _scrollToSection(_servicesKey)),
-        _buildNavButton(context, 'About', () => _scrollToSection(_aboutKey)),
-        _buildNavButton(
-            context, 'Contact', () => _scrollToSection(_contactKey)),
-        const SizedBox(width: 16),
-      ],
+      actions: isMobile
+          ? [
+              PopupMenuButton<String>(
+                onSelected: (String value) {
+                  switch (value) {
+                    case 'Home':
+                      _scrollToSection(_heroKey);
+                      break;
+                    case 'Services':
+                      _scrollToSection(_servicesKey);
+                      break;
+                    case 'About':
+                      _scrollToSection(_aboutKey);
+                      break;
+                    case 'Contact':
+                      _scrollToSection(_contactKey);
+                      break;
+                  }
+                },
+                itemBuilder: (BuildContext context) => [
+                  const PopupMenuItem(
+                    value: 'Home',
+                    child: Text('Home'),
+                  ),
+                  const PopupMenuItem(
+                    value: 'Services',
+                    child: Text('Services'),
+                  ),
+                  const PopupMenuItem(
+                    value: 'About',
+                    child: Text('About'),
+                  ),
+                  const PopupMenuItem(
+                    value: 'Contact',
+                    child: Text('Contact'),
+                  ),
+                ],
+              ),
+            ]
+          : [
+              _buildNavButton(context, 'Home', () => _scrollToSection(_heroKey)),
+              _buildNavButton(
+                  context, 'Services', () => _scrollToSection(_servicesKey)),
+              _buildNavButton(context, 'About', () => _scrollToSection(_aboutKey)),
+              _buildNavButton(
+                  context, 'Contact', () => _scrollToSection(_contactKey)),
+              const SizedBox(width: 16),
+            ],
     );
   }
 

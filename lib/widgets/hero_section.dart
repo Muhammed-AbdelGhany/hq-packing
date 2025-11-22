@@ -51,7 +51,7 @@ class _HeroSectionState extends State<HeroSection>
 
         return Container(
           width: double.infinity,
-          constraints: const BoxConstraints(minHeight: 600),
+          constraints: BoxConstraints(minHeight: isMobile ? 480 : 600),
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
@@ -65,8 +65,8 @@ class _HeroSectionState extends State<HeroSection>
           child: Center(
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: isMobile ? 24 : (isTablet ? 48 : 80),
-                vertical: isMobile ? 60 : 100,
+                horizontal: isMobile ? 20 : (isTablet ? 48 : 80),
+                vertical: isMobile ? 40 : 100,
               ),
               child: FadeTransition(
                 opacity: _fadeAnimation,
@@ -148,7 +148,7 @@ class _HoverButtonState extends State<_HoverButton> {
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.white,
             foregroundColor: Theme.of(context).primaryColor,
-            padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 18),
             elevation: _isHovered ? 8 : 4,
             shadowColor: Colors.black.withOpacity(0.3),
           ),
