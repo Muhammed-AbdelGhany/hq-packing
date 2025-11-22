@@ -9,7 +9,8 @@ class HeroSection extends StatefulWidget {
   State<HeroSection> createState() => _HeroSectionState();
 }
 
-class _HeroSectionState extends State<HeroSection> with SingleTickerProviderStateMixin {
+class _HeroSectionState extends State<HeroSection>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
@@ -45,8 +46,9 @@ class _HeroSectionState extends State<HeroSection> with SingleTickerProviderStat
     return LayoutBuilder(
       builder: (context, constraints) {
         final isMobile = constraints.maxWidth < 768;
-        final isTablet = constraints.maxWidth >= 768 && constraints.maxWidth < 1024;
-        
+        final isTablet =
+            constraints.maxWidth >= 768 && constraints.maxWidth < 1024;
+
         return Container(
           width: double.infinity,
           constraints: const BoxConstraints(minHeight: 600),

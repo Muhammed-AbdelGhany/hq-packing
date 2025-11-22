@@ -8,8 +8,9 @@ class AboutSection extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final isMobile = constraints.maxWidth < 768;
-        final isTablet = constraints.maxWidth >= 768 && constraints.maxWidth < 1024;
-        
+        final isTablet =
+            constraints.maxWidth >= 768 && constraints.maxWidth < 1024;
+
         return Container(
           width: double.infinity,
           color: Colors.white,

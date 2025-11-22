@@ -8,7 +8,7 @@ class FooterSection extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final isMobile = constraints.maxWidth < 768;
-        
+
         return Container(
           width: double.infinity,
           color: Theme.of(context).primaryColor,

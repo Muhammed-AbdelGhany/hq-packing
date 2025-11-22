@@ -23,7 +23,8 @@ class _ContactSectionState extends State<ContactSection> {
     super.dispose();
   }
 
-  Future<void> _launchEmail(String email, {String? subject, String? body}) async {
+  Future<void> _launchEmail(String email,
+      {String? subject, String? body}) async {
     final Uri emailUri = Uri(
       scheme: 'mailto',
       path: email,
@@ -60,7 +61,8 @@ class _ContactSectionState extends State<ContactSection> {
 
   String? _encodeQueryParameters(Map<String, String> params) {
     return params.entries
-        .map((e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+        .map((e) =>
+            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
         .join('&');
   }
 
@@ -102,8 +104,9 @@ class _ContactSectionState extends State<ContactSection> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final isMobile = constraints.maxWidth < 768;
-        final isTablet = constraints.maxWidth >= 768 && constraints.maxWidth < 1024;
-        
+        final isTablet =
+            constraints.maxWidth >= 768 && constraints.maxWidth < 1024;
+
         return Container(
           width: double.infinity,
           color: Colors.grey[50],
@@ -210,7 +213,8 @@ class _ContactSectionState extends State<ContactSection> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
                   }
-                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                      .hasMatch(value)) {
                     return 'Please enter a valid email';
                   }
                   return null;
@@ -249,7 +253,8 @@ class _ContactSectionState extends State<ContactSection> {
                         width: 20,
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
-                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white),
                         ),
                       )
                     : const Text(

@@ -8,8 +8,9 @@ class ServicesSection extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final isMobile = constraints.maxWidth < 768;
-        final isTablet = constraints.maxWidth >= 768 && constraints.maxWidth < 1024;
-        
+        final isTablet =
+            constraints.maxWidth >= 768 && constraints.maxWidth < 1024;
+
         return Container(
           width: double.infinity,
           color: Colors.grey[50],
@@ -38,7 +39,8 @@ class ServicesSection extends StatelessWidget {
               ),
               const SizedBox(height: 48),
               ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 1200, minHeight: 350),
+                constraints:
+                    const BoxConstraints(maxWidth: 1200, minHeight: 350),
                 child: isMobile
                     ? Column(
                         children: [
@@ -122,8 +124,7 @@ class _ServiceCardState extends State<_ServiceCard> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
-        transform: Matrix4.identity()
-          ..translate(0.0, _isHovered ? -8.0 : 0.0),
+        transform: Matrix4.identity()..translate(0.0, _isHovered ? -8.0 : 0.0),
         child: Card(
           elevation: _isHovered ? 12 : 4,
           shadowColor: widget.color.withOpacity(0.3),

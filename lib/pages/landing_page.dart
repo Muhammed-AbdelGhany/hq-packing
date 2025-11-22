@@ -44,7 +44,9 @@ class _LandingPageState extends State<LandingPage> {
         controller: _scrollController,
         child: Column(
           children: [
-            HeroSection(key: _heroKey, onContactPressed: () => _scrollToSection(_contactKey)),
+            HeroSection(
+                key: _heroKey,
+                onContactPressed: () => _scrollToSection(_contactKey)),
             ServicesSection(key: _servicesKey),
             AboutSection(key: _aboutKey),
             ContactSection(key: _contactKey),
@@ -79,15 +81,18 @@ class _LandingPageState extends State<LandingPage> {
       ),
       actions: [
         _buildNavButton(context, 'Home', () => _scrollToSection(_heroKey)),
-        _buildNavButton(context, 'Services', () => _scrollToSection(_servicesKey)),
+        _buildNavButton(
+            context, 'Services', () => _scrollToSection(_servicesKey)),
         _buildNavButton(context, 'About', () => _scrollToSection(_aboutKey)),
-        _buildNavButton(context, 'Contact', () => _scrollToSection(_contactKey)),
+        _buildNavButton(
+            context, 'Contact', () => _scrollToSection(_contactKey)),
         const SizedBox(width: 16),
       ],
     );
   }
 
-  Widget _buildNavButton(BuildContext context, String label, VoidCallback onPressed) {
+  Widget _buildNavButton(
+      BuildContext context, String label, VoidCallback onPressed) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: TextButton(
